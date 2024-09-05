@@ -6,7 +6,7 @@ license="LGPLv3"
 [[mods]] #mandatory
 modId="enhancedcelestials" #mandatory
 version="${file.jarVersion}" #mandatory
-displayName="Enhanced Celestials" #mandatory
+displayName="Fork Enhanced Celestials" #mandatory
 #updateJSONURL="http://myurl.me/" #optional
 #displayURL="http://example.com/" #optional
 #logoFile="examplemod.png" #optional

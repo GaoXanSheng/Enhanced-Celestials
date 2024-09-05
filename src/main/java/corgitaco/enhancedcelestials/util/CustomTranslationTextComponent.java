@@ -30,7 +30,7 @@ public class CustomTranslationTextComponent extends TranslatableComponent {
     }
 
     public CustomTranslationTextComponent(String translationKey, Style style, CustomTranslationTextComponent... args) {
-        super(translationKey, args);
+        super(translationKey, (Object) args);
         this.setStyle(style);
         this.args = Arrays.asList(args);
     }

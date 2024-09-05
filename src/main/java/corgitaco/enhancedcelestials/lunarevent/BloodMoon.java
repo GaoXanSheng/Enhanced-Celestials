@@ -28,33 +28,15 @@ public class BloodMoon extends LunarEvent {
             return blueMoon.getTextComponents();
         }), Codec.BOOL.fieldOf("blockSleeping").forGetter((clientSettings) -> {
             return clientSettings.blockSleeping();
-        }), Codec.unboundedMap(MobCategory.CODEC, Codec.DOUBLE).fieldOf("spawnCategoryMultiplier").forGetter((clientSettings) -> {
-            return clientSettings.spawnCategoryMultiplier;
-        }), LunarMobSpawnInfo.CODEC.fieldOf("lunarSpawnSettings").forGetter((clientSettings) -> {
-            return clientSettings.lunarMobSpawnInfo;
         })).apply(builder, BloodMoon::new);
     });
-    private final Object2DoubleArrayMap<MobCategory> spawnCategoryMultiplier;
-    private final LunarMobSpawnInfo lunarMobSpawnInfo;
 
-    public BloodMoon(LunarEventClientSettings clientSettings, int minNumberOfNightsBetween, double chance, Collection<Integer> validMoonPhases, LunarTextComponents lunarTextComponents, boolean blockSleeping, Map<MobCategory, Double> spawnCategoryMultiplier, LunarMobSpawnInfo lunarMobSpawnInfo) {
+    public BloodMoon(LunarEventClientSettings clientSettings, int minNumberOfNightsBetween, double chance, Collection<Integer> validMoonPhases, LunarTextComponents lunarTextComponents, boolean blockSleeping) {
         super(clientSettings, minNumberOfNightsBetween, chance, validMoonPhases, lunarTextComponents, blockSleeping);
-        this.spawnCategoryMultiplier = new Object2DoubleArrayMap<>(spawnCategoryMultiplier);
-        this.lunarMobSpawnInfo = lunarMobSpawnInfo;
     }
-
-    @Override
-    public double getSpawnMultiplierForMonsterCategory(MobCategory classification) {
-        return this.spawnCategoryMultiplier.getDouble(classification);
-    }
-
     @Override
     public Codec<? extends LunarEvent> codec() {
         return CODEC;
     }
 
-    @Override
-    public LunarMobSpawnInfo getLunarSpawner() {
-        return this.lunarMobSpawnInfo;
-    }
 }
